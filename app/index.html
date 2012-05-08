@@ -11,10 +11,13 @@
 <body ng-controller="GameCtrl">
   <div>Pairs left to match: {{game.unmatchedPairs}}</div>
   <div>Matching: {{game.firstPick.title}}</div>
+
   <table>
     <tr ng-repeat="row in game.grid">
       <td ng-repeat="tile in row">
-        <div ng-click="game.flipTile(tile)"><img ng-src="img/{{tile.imgName()}}.png"</div>
+        <div ng-click="game.flipTile(tile)">
+          <img ng-src="img/{{tile.imgName()}}.png">
+        </div>
       </td>
     </tr>
   </table>
