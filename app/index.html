@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+
+<div ng-controller="GridCtrl">
+
+    <div>Pairs left to match: {{unmatchedPairs}}</div>
+    <div>Matching: {{guesses[0].display}}</div>
+    <table>
+        <tr ng-repeat="row in grid">
+            <td ng-repeat="tile in row">
+                <div ng-click="flipTile(tile)"><img src="img/{{tile.display}}.png"</div>
+            </td>
+        </tr>
+    </table>
+
+    <div>{{message}}</div>
+
+</div>
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>
