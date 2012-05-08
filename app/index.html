@@ -1,29 +1,27 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="memoryGameApp">
 <head>
   <meta charset="utf-8">
   <title>Memory Game</title>
-  <link rel="stylesheet" href="css/app.css"/>
-</head>
-<body>
-
-<div ng-controller="GridCtrl">
-
-    <div>Pairs left to match: {{unmatchedPairs}}</div>
-    <div>Matching: {{guesses[0].display}}</div>
-    <table>
-        <tr ng-repeat="row in grid">
-            <td ng-repeat="tile in row">
-                <div ng-click="flipTile(tile)"><img src="img/{{tile.display}}.png"</div>
-            </td>
-        </tr>
-    </table>
-
-    <div>{{message}}</div>
-
-</div>
-
+  <link rel="stylesheet" href="css/app.css">
   <script src="lib/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/game.js"></script>
+</head>
+<body ng-controller="GameCtrl">
+  <div>Pairs left to match: {{game.unmatchedPairs}}</div>
+  <div>Matching: {{game.firstPick.title}}</div>
+
+  <table>
+    <tr ng-repeat="row in game.grid">
+      <td ng-repeat="tile in row">
+        <div ng-click="game.flipTile(tile)">
+          <img ng-src="img/{{tile.imgName()}}.png">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div>{{game.message}}</div>
 </body>
 </html>
