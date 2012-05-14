@@ -2,16 +2,12 @@
 /* Memory Game Models and Business Logic */
 
 function Tile(title) {
-  this.title = title;
-  this.flipped = false;
-}
-
-Tile.prototype.imgName = function() {
-  return this.flipped ?  this.title : 'back';
+  this.front = title;
+  this.flipped = '';
 }
 
 Tile.prototype.flip = function() {
-  this.flipped = !this.flipped;
+  this.flipped = (this.flipped === '') ? 'flipped' : '';
 }
 
 
