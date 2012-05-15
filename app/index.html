@@ -14,14 +14,15 @@
 
   <table>
     <tr ng-repeat="row in game.grid">
-      <td ng-repeat="tile in row">
-        <div ng-click="game.flipTile(tile)">
-          <img ng-src="img/{{tile.imgName()}}.png">
+      <td ng-repeat="tile in row" class="container">
+        <div class="card" ng-class="{flipped: tile.flipped}" ng-click="game.flipTile(tile)">
+            <img class="front" ng-src="img/back.png">
+            <img class="back" ng-src="img/{{tile.title}}.png">
         </div>
       </td>
     </tr>
   </table>
 
-  <div>{{game.message}}</div>
+  <div class="message">{{game.message}}</div>
 </body>
 </html>
