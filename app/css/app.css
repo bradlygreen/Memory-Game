@@ -4,34 +4,10 @@ div {
   font-size: 30px;
 }
 
-/*
-.container {
-  -webkit-perspective: 800px;
-}
-
-.card {
-  -webkit-transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 1s;
-}
-
-.card img {
-  -webkit-backface-visibility: hidden;
-}
-
-.card .back {
-  -webkit-transform: rotateY( 180deg );
-}
-
-.card .flipped {
-  -webkit-transform: rotateY( 180deg );
-}
-*/
-
 .container {
   width: 165px;
   height: 200px;
   position: relative;
-  margin: 0 auto 0px;
   border: 1px solid #CCC;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
