@@ -62,3 +62,8 @@ div {
   -o-transform: rotateY( 180deg );
   transform: rotateY( 180deg );
 }
+
+.message {
+  width: 660px;
+  text-align: center;
+}
