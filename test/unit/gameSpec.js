@@ -29,12 +29,13 @@ describe('Game', function() {
 
 
     beforeEach(function() {
+      // this is messy because Game constructor is non-deterministic - it should be refactored
       tile1a = game.grid[0][0];
 
-      // this is weird because Game constructor is non-deterministic, this should be refactored
       if (tile1a.title === game.grid[0][1].title) {
         tile1b = game.grid[0][1];
         tile2a = game.grid[1][0];
+        tile2b = game.grid[1][1];
       } else {
         tile2a = game.grid[0][1];
 
@@ -53,14 +54,6 @@ describe('Game', function() {
       expect(tile1a.flipped).toBe(false);
       game.flipTile(tile1a);
       expect(tile1a.flipped).toBe(true);
-    });
-
-
-    xit('should update the image name when a tile is flipped', function() {
-      expect(tile1a.imgName()).toBe('back');
-
-      game.flipTile(tile1a);
-      expect(tile1a.imgName()).not.toBe('back');
     });
 
 
@@ -101,6 +94,29 @@ describe('Game', function() {
       expect(tile2a.flipped).toBe(true);
       expect(tile2b.flipped).toBe(true);
       expect(game.unmatchedPairs).toBe(0);
+    });
+
+
+    it('should keep the message model up to date during the game', function() {
+      expect(game.message).toBe(Game.MESSAGE_CLICK);
+
+      game.flipTile(tile1a);
+      expect(game.message).toBe(Game.MESSAGE_ONE_MORE);
+
+      game.flipTile(tile2b);
+      expect(game.message).toBe(Game.MESSAGE_MISS);
+
+      game.flipTile(tile1b);
+      expect(game.message).toBe(Game.MESSAGE_ONE_MORE);
+
+      game.flipTile(tile1a);
+      expect(game.message).toBe(Game.MESSAGE_MATCH);
+
+      game.flipTile(tile2b);
+      expect(game.message).toBe(Game.MESSAGE_ONE_MORE);
+
+      game.flipTile(tile2a);
+      expect(game.message).toBe(Game.MESSAGE_WON);
     });
   });
 });
