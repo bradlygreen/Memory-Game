@@ -33,4 +33,19 @@ describe('MemoryGameApp', function() {
       expect(game.unmatchedPairs).toBe(8);
     });
   });
+
+
+  describe('mgCard directive', function() {
+    it('should render a card using divs and bind it to a tile', inject(function($compile, $rootScope) {
+      var tile = new Tile('sampleTile'),
+          element;
+
+      $rootScope.tileModel = tile;
+      element = $compile('<mg-card tile="tileModel"></mg-card>')($rootScope);
+      $rootScope.$apply();
+
+      expect(element.find('div').find('div').find('img').eq(1).attr('src')).
+          toBe('img/sampleTile.png');
+    }));
+  });
 });
