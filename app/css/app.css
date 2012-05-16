@@ -8,7 +8,6 @@ div {
   width: 165px;
   height: 200px;
   position: relative;
-  border: 1px solid #CCC;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
   -ms-perspective: 800px;
