@@ -30,13 +30,13 @@ memoryGameApp.directive('mgCard', function() {
     // <script type="text/ng-template" id="mg-card.html">.. template here.. </script> element to
     // index.html
     template: '<div class="container">' +
-                '<div class="card" ng-class="{flipped: tile().flipped}">' +
+                '<div class="card" ng-class="{flipped: tile.flipped}">' +
                   '<img class="front" ng-src="img/back.png">' +
-                  '<img class="back" ng-src="img/{{tile().title}}.png">' +
+                  '<img class="back" ng-src="img/{{tile.title}}.png">' +
                 '</div>' +
               '</div>',
     scope: {
-      tile: 'accessor'
+      tile: '='
     }
   }
 });
