@@ -1,14 +1,14 @@
 /**
- * @license AngularJS v1.0.0rc6
+ * @license AngularJS v1.0.6
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(angular) {
+(function(window, angular, undefined) {
 'use strict';
 
 /**
  * @ngdoc overview
- * @name angular.module.ngSanitize
+ * @name ngSanitize
  * @description
  */
 
@@ -31,7 +31,7 @@
 
 /**
  * @ngdoc service
- * @name angular.module.ngSanitize.$sanitize
+ * @name ngSanitize.$sanitize
  * @function
  *
  * @description
@@ -400,34 +400,32 @@ function htmlSanitizeWriter(buf){
 // define ngSanitize module and register $sanitize service
 angular.module('ngSanitize', []).value('$sanitize', $sanitize);
 
-
-
 /**
  * @ngdoc directive
- * @name angular.module.ngSanitize.directive.ngBindHtml
+ * @name ngSanitize.directive:ngBindHtml
  *
  * @description
  * Creates a binding that will sanitize the result of evaluating the `expression` with the
- * {@link angular.module.ng.$sanitize $sanitize} service and innerHTML the result into the current
- * element.
+ * {@link ngSanitize.$sanitize $sanitize} service and innerHTML the result into the current element.
  *
- * See {@link angular.module.ng.$sanitize $sanitize} docs for examples.
+ * See {@link ngSanitize.$sanitize $sanitize} docs for examples.
  *
  * @element ANY
- * @param {expression} ngBindHtml {@link guide/dev_guide.expressions Expression} to evaluate.
+ * @param {expression} ngBindHtml {@link guide/expression Expression} to evaluate.
  */
 angular.module('ngSanitize').directive('ngBindHtml', ['$sanitize', function($sanitize) {
   return function(scope, element, attr) {
     element.addClass('ng-binding').data('$binding', attr.ngBindHtml);
-    scope.$watch(attr.ngBindHtml, function(value) {
+    scope.$watch(attr.ngBindHtml, function ngBindHtmlWatchAction(value) {
       value = $sanitize(value);
       element.html(value || '');
     });
   };
 }]);
+
 /**
  * @ngdoc filter
- * @name angular.module.ngSanitize.filter.linky
+ * @name ngSanitize.filter:linky
  * @function
  *
  * @description
@@ -436,6 +434,9 @@ angular.module('ngSanitize').directive('ngBindHtml', ['$sanitize', function($san
  *
  * @param {string} text Input text.
  * @returns {string} Html-linkified text.
+ *
+ * @usage
+   <span ng-bind-html="linky_expression | linky"></span>
  *
  * @example
    <doc:example module="ngSanitize">
@@ -532,4 +533,5 @@ angular.module('ngSanitize').filter('linky', function() {
   };
 });
 
-})(window.angular);
+
+})(window, window.angular);
